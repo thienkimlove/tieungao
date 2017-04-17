@@ -12,33 +12,12 @@
 
     <title>Admin</title>
 
-    <!-- Bootstrap Core CSS -->
-    <link href="{{url('frontend/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
-
-    <!-- MetisMenu CSS -->
-    <link href="{{url('frontend/vendor/metisMenu/metisMenu.min.css')}}" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="{{ url('frontend/dist/css/sb-admin-2.min.css') }}" rel="stylesheet" type="text/css">
-
-    <!-- Morris Charts CSS -->
-    <link href="{{url('frontend/vendor/morrisjs/morris.css')}}" rel="stylesheet">
-
     <!-- Custom Fonts -->
-    <link href="{{url('frontend/vendor/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{ url('/css/admin/admin.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ url('/css/admin/select2.min.css')}}" rel="stylesheet" />
+    <link href="{{ url('/js/admin/datetimepicker/build/jquery.datetimepicker.min.css')}}" rel="stylesheet" />
 
-
-    <link href="{{ url('js/select2/dist/css/select2.css')}}" rel="stylesheet" />
-
-    <link href="{{ url('js/datetimepicker/build/jquery.datetimepicker.min.css')}}" rel="stylesheet" />
-    <link href="{{ url('js/ckeditor/contents.css')}}" rel="stylesheet" />
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    <link rel="stylesheet" href="{{url('js/admin/jquery-ui.css')}}">
 
 </head>
 
@@ -168,26 +147,11 @@
 <script>
     window.baseUrl = '{{url('/')}}';
 </script>
-<script src="{{url('frontend/vendor/jquery/jquery.min.js')}}"></script>
-
-<!-- Bootstrap Core JavaScript -->
-<script src="{{url('frontend/vendor/bootstrap/js/bootstrap.min.js')}}"></script>
-
-<!-- Metis Menu Plugin JavaScript -->
-<script src="{{url('frontend/vendor/metisMenu/metisMenu.min.js')}}"></script>
-
-<!-- Morris Charts JavaScript -->
-<script src="{{url('frontend/vendor/raphael/raphael.min.js')}}"></script>
-<script src="{{url('frontend/vendor/morrisjs/morris.min.js')}}"></script>
-<script src="{{url('frontend/data/morris-data.js')}}"></script>
-
-<!-- Custom Theme JavaScript -->
-<script src="{{url('frontend/dist/js/sb-admin-2.js')}}"></script>
-
-<script src="{{url('js/ckeditor/ckeditor.js')}}"></script>
-<script src="{{url('js/select2/dist/js/select2.js')}}"></script>
-<script src="{{url('js/datetimepicker/build/jquery.datetimepicker.min.js')}}"></script>
-
+<script src="{{url('js/admin/admin.js')}}"></script>
+<script src="{{url('js/admin/ckeditor/ckeditor.js')}}"></script>
+<script src="{{url('js/admin/select2.min.js')}}"></script>
+<script src="{{url('js/admin/datetimepicker/build/jquery.datetimepicker.full.min.js')}}"></script>
+<script src="{{url('js/admin/jquery-ui.js')}}"></script>
 <script type="text/javascript">
     $.ajaxSetup({
         headers: { 'X-CSRF-Token' : $('meta[name=csrf_token]').attr('content') }

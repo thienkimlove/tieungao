@@ -3,6 +3,8 @@
 
 #Frontend
 Route::get('/', 'FrontendController@index');
+Route::get('thanh-toan', 'FrontendController@checkout');
+Route::get('{value}', 'FrontendController@main');
 
 #Admin Routes
 Route::get('admin/login', 'AdminController@redirectToGoogle');

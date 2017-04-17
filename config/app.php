@@ -182,9 +182,7 @@ return [
         Collective\Html\HtmlServiceProvider::class, 
         Maatwebsite\Excel\ExcelServiceProvider::class, 
         Laracasts\Flash\FlashServiceProvider::class, 
-        Laravel\Socialite\SocialiteServiceProvider::class, 
-        Spatie\Permission\PermissionServiceProvider::class, 
-        Barryvdh\Debugbar\ServiceProvider::class,
+        Laravel\Socialite\SocialiteServiceProvider::class,
 
     ],
 
@@ -239,9 +237,7 @@ return [
         'Form' => Collective\Html\FormFacade::class, 
         'Html' => Collective\Html\HtmlFacade::class,  
         'Excel' => Maatwebsite\Excel\Facades\Excel::class, 
-        'Socialite' => Laravel\Socialite\Facades\Socialite::class, 
-        'Debugbar' => Barryvdh\Debugbar\Facade::class,
-
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
     ],
 
 ];

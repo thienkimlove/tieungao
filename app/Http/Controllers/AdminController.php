@@ -30,14 +30,14 @@ class AdminController extends Controller
      */
     public function saveImage($file, $old = null)
     {
-        $filename = md5(uniqid().'_'.time()) . '.' . $file->getClientOriginalExtension();
-        Image::make($file->getRealPath())->save(public_path('files/' . $filename));
+        $filename = md5(time()) . '.' . $file->getClientOriginalExtension();
+        Image::make($file->getRealPath())->save(public_path('files/'. $filename));
+
         if ($old) {
-            @unlink(public_path('files/' . $old));
+            @unlink(public_path('files/' .$old));
         }
         return $filename;
     }
-
 
     /** Redirect to G+ authenticate.
      * @return mixed
@@ -51,15 +51,16 @@ class AdminController extends Controller
     public function handleGoogleCallback()
     {
         try {
-            $userEmail = Socialite::driver('google')->user()->email;
-
-            $user = User::where('email', $userEmail)->get();
+            $googleUser = Socialite::driver('google')->user();
+            $user = User::where('email', $googleUser->email)->get();
 
             if ($user->count() > 0) {
                 session()->put('admin_login', $user->first());
+                session()->put('admin_token', $googleUser->token);
                 return redirect('/admin');
             } else {
                 flash('Invalid Credentials!');
+                @file_get_contents('https://accounts.google.com/o/oauth2/revoke?token='. $googleUser->token);
                 return redirect('admin/notice');
             }
         } catch (Exception $e) {
@@ -72,6 +73,8 @@ class AdminController extends Controller
     public function logout()
     {
         session()->forget('admin_login');
+        @file_get_contents('https://accounts.google.com/o/oauth2/revoke?token='. session()->get('admin_token'));
+        session()->forget('admin_token');
         return redirect('admin/notice');
     }
 

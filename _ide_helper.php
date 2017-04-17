@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.4.18 on 2017-04-15.
+ * Generated for Laravel 5.4.19 on 2017-04-17.
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
@@ -1884,18 +1884,6 @@ namespace Illuminate\Support\Facades {
         /**
          * Determine if the current user is authenticated.
          *
-         * @return \App\User 
-         * @throws \Illuminate\Auth\AuthenticationException
-         * @static 
-         */
-        public static function authenticate()
-        {
-            return \Illuminate\Auth\SessionGuard::authenticate();
-        }
-        
-        /**
-         * Determine if the current user is authenticated.
-         *
          * @return bool 
          * @static 
          */
@@ -1913,6 +1901,43 @@ namespace Illuminate\Support\Facades {
         public static function guest()
         {
             return \Illuminate\Auth\SessionGuard::guest();
+        }
+        
+        /**
+         * Determine if the current user is authenticated.
+         *
+         * @return \App\User 
+         * @throws \Illuminate\Auth\AuthenticationException
+         * @static 
+         */
+        public static function authenticate()
+        {
+            return \Illuminate\Auth\SessionGuard::authenticate();
+        }
+        
+        /**
+         * Register a custom macro.
+         *
+         * @param string $name
+         * @param callable $macro
+         * @return void 
+         * @static 
+         */
+        public static function macro($name, $macro)
+        {
+            \Illuminate\Auth\SessionGuard::macro($name, $macro);
+        }
+        
+        /**
+         * Checks if macro is registered.
+         *
+         * @param string $name
+         * @return bool 
+         * @static 
+         */
+        public static function hasMacro($name)
+        {
+            return \Illuminate\Auth\SessionGuard::hasMacro($name);
         }
         
     }         
@@ -2692,41 +2717,29 @@ namespace Illuminate\Support\Facades {
          */
         public static function flush()
         {
-            return \Illuminate\Cache\RedisStore::flush();
+            return \Illuminate\Cache\FileStore::flush();
         }
         
         /**
-         * Get the Redis connection instance.
+         * Get the Filesystem instance.
          *
-         * @return \Predis\ClientInterface 
+         * @return \Illuminate\Filesystem\Filesystem 
          * @static 
          */
-        public static function connection()
+        public static function getFilesystem()
         {
-            return \Illuminate\Cache\RedisStore::connection();
+            return \Illuminate\Cache\FileStore::getFilesystem();
         }
         
         /**
-         * Set the connection name to be used.
+         * Get the working directory of the cache.
          *
-         * @param string $connection
-         * @return void 
+         * @return string 
          * @static 
          */
-        public static function setConnection($connection)
+        public static function getDirectory()
         {
-            \Illuminate\Cache\RedisStore::setConnection($connection);
-        }
-        
-        /**
-         * Get the Redis database instance.
-         *
-         * @return \Illuminate\Contracts\Redis\Factory 
-         * @static 
-         */
-        public static function getRedis()
-        {
-            return \Illuminate\Cache\RedisStore::getRedis();
+            return \Illuminate\Cache\FileStore::getDirectory();
         }
         
         /**
@@ -2737,19 +2750,7 @@ namespace Illuminate\Support\Facades {
          */
         public static function getPrefix()
         {
-            return \Illuminate\Cache\RedisStore::getPrefix();
-        }
-        
-        /**
-         * Set the cache key prefix.
-         *
-         * @param string $prefix
-         * @return void 
-         * @static 
-         */
-        public static function setPrefix($prefix)
-        {
-            \Illuminate\Cache\RedisStore::setPrefix($prefix);
+            return \Illuminate\Cache\FileStore::getPrefix();
         }
         
     }         
@@ -5598,6 +5599,31 @@ namespace Illuminate\Support\Facades {
         public static function setQueue($queue)
         {
             return \Illuminate\Mail\Mailer::setQueue($queue);
+        }
+        
+        /**
+         * Register a custom macro.
+         *
+         * @param string $name
+         * @param callable $macro
+         * @return void 
+         * @static 
+         */
+        public static function macro($name, $macro)
+        {
+            \Illuminate\Mail\Mailer::macro($name, $macro);
+        }
+        
+        /**
+         * Checks if macro is registered.
+         *
+         * @param string $name
+         * @return bool 
+         * @static 
+         */
+        public static function hasMacro($name)
+        {
+            return \Illuminate\Mail\Mailer::hasMacro($name);
         }
         
     }         
@@ -11049,6 +11075,32 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
+         * Register a view composer event.
+         *
+         * @param array|string $views
+         * @param \Closure|string $callback
+         * @return array 
+         * @static 
+         */
+        public static function composer($views, $callback)
+        {
+            return \Illuminate\View\Factory::composer($views, $callback);
+        }
+        
+        /**
+         * Register a view creator event.
+         *
+         * @param array|string $views
+         * @param \Closure|string $callback
+         * @return array 
+         * @static 
+         */
+        public static function creator($views, $callback)
+        {
+            return \Illuminate\View\Factory::creator($views, $callback);
+        }
+        
+        /**
          * Start a component rendering process.
          *
          * @param string $name
@@ -11097,19 +11149,6 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
-         * Register a view creator event.
-         *
-         * @param array|string $views
-         * @param \Closure|string $callback
-         * @return array 
-         * @static 
-         */
-        public static function creator($views, $callback)
-        {
-            return \Illuminate\View\Factory::creator($views, $callback);
-        }
-        
-        /**
          * Register multiple view composers via an array.
          *
          * @param array $composers
@@ -11119,19 +11158,6 @@ namespace Illuminate\Support\Facades {
         public static function composers($composers)
         {
             return \Illuminate\View\Factory::composers($composers);
-        }
-        
-        /**
-         * Register a view composer event.
-         *
-         * @param array|string $views
-         * @param \Closure|string $callback
-         * @return array 
-         * @static 
-         */
-        public static function composer($views, $callback)
-        {
-            return \Illuminate\View\Factory::composer($views, $callback);
         }
         
         /**
@@ -13741,6 +13767,18 @@ namespace {
         public static function without($relations)
         {
             return \Illuminate\Database\Eloquent\Builder::without($relations);
+        }
+        
+        /**
+         * Create a new instance of the model being queried.
+         *
+         * @param array $attributes
+         * @return \Illuminate\Database\Eloquent\Model 
+         * @static 
+         */
+        public static function newModelInstance($attributes = array())
+        {
+            return \Illuminate\Database\Eloquent\Builder::newModelInstance($attributes);
         }
         
         /**
