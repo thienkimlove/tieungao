@@ -9,6 +9,7 @@
     <!--theme-style-->
     <link href="{{url('web/css/style.css')}}" rel="stylesheet" type="text/css" media="all" />
     <!--//theme-style-->
+    <meta name="csrf_token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="keywords" content="New Store Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
@@ -34,6 +35,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--content-->
 @yield('content')
 @include('web.footer')
+<script type="text/javascript">
+    window.baseUrl = '{{url('/')}}';
+    $.ajaxSetup({
+        headers: { 'X-CSRF-Token' : $('meta[name=csrf_token]').attr('content') }
+    });
+
+</script>
 @yield('script')
 </body>
 </html>

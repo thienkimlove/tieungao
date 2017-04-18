@@ -14,7 +14,7 @@
 
                 </ul>
                 <div class="cart box_1">
-                    <a href="checkout.html">
+                    <a href="{{url('checkout')}}">
                         <h3> <div class="total">
                                 <span class="simpleCart_total"></span> (<span id="simpleCart_quantity" class="simpleCart_quantity"></span> items)</div>
                             <img src="{{url('web/images/cart.png')}}" alt=""/></h3>

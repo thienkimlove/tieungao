@@ -1,9 +1,8 @@
 <?php
-
-
 #Frontend
 Route::get('/', 'FrontendController@index');
-Route::get('thanh-toan', 'FrontendController@checkout');
+Route::get('checkout', 'FrontendController@checkout');
+Route::post('order', 'FrontendController@order');
 Route::get('{value}', 'FrontendController@main');
 
 #Admin Routes
