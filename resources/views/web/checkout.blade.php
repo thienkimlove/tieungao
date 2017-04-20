@@ -108,6 +108,7 @@
             $('#place_order').click(function(){
                 $.post(window.baseUrl + '/order', {},  function(response){
                     window.location.href = window.baseUrl;
+                   // console.log(response);
                 });
             });
         });

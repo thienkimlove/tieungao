@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Category;
 use App\Product;
 use Carbon\Carbon;
 use DB;
@@ -22,6 +23,9 @@ class FrontendController extends Controller
 
     public function order()
     {
+
+        $msg = null;
+
         $order_items = [
             [
                 'product_id' => 1,
@@ -66,7 +70,7 @@ class FrontendController extends Controller
                    'product_id' => $item['product_id'],
                    'quantity' => $item['quantity'],
                    'product_current_price' => ($product->promotion_price) ? $product->promotion_price : $product->seller_price,
-                   'product_current_vat' => $product->seller_vat,
+                   'product_current_vat' => ($product->seller_vat) ? $product->seller_vat : 10,
                    'created_at' => $now,
                    'updated_at' => $now,
                ]);
@@ -74,25 +78,32 @@ class FrontendController extends Controller
            }
             DB::commit();
 
+           $msg = 'Complete';
+
         } catch (\Exception $e) {
             \Log::info($e->getMessage());
+            $msg = $e->getMessage();
             DB::rollback();
         }
+
+        return response()->json(['msg' => $msg]);
     }
 
-    public function main($value, Request $request)
+    public function main($value)
     {
 
         if (preg_match('/([a-z0-9\-]+)-([\d])\.html/', $value, $matches)) {
 
             //product details.
             $product = Product::find($matches[2]);
-
             return view('web.product', compact('product'));
-
 
         } else {
              //category
+            if (preg_match('/([a-z0-9\-]+)-([\d])/', $value, $matches)) {
+                $category = Category::find($matches[2]);
+                return view('web.category', compact('category'));
+            }
 
         }
     }
