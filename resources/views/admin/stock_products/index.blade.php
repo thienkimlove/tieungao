@@ -30,7 +30,7 @@
                                     <td>{{$content->product->name}}</td>
 
                                     <td>
-                                        {{($content->status) ? 'In Stock' : 'Out of Stock'}}
+                                        {{($content->in_stock) ? 'In Stock' : 'Out of Stock'}}
                                     </td>
 
                                 </tr>
