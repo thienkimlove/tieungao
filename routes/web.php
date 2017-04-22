@@ -21,6 +21,7 @@ Route::get('admin/export_order/{id}', 'OrdersController@export');
 Route::get('admin/cancel_order/{id}', 'OrdersController@cancel');
 
 Route::get('admin/exports', 'ExportsController@index');
+Route::get('admin/stock_products', 'StockProductsController@index');
 Route::get('admin/cancel_export/{id}', 'ExportsController@cancel');
 
 #Frontend
