@@ -33,7 +33,7 @@ class CreateTableOrders extends Migration
 
             $table->text('customer_note')->nullable();
 
-            $table->smallInteger('status')->default(0); // 0 : created, 1 : sale process, 2 : warehouse process; 3 : exported, 4 : cancel
+            $table->tinyInteger('status')->unsigned()->default(0); // 0 : created, 1 : sale process, 2 : warehouse process; 3 : exported, 4 : cancel
 
             $table->timestamps();
         });

@@ -7,9 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 class Export extends Model
 {
     protected $fillable = [
-        'export_id',
+        'order_id',
         'user_id',
         'note',
         'status'
     ];
+
+    public function order()
+    {
+        return $this->belongsTo(Order::class);
+    }
+
+
 }

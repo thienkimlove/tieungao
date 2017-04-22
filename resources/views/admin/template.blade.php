@@ -16,9 +16,6 @@
     <link href="{{ url('/css/admin/admin.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ url('/css/admin/select2.min.css')}}" rel="stylesheet" />
     <link href="{{ url('/js/admin/datetimepicker/build/jquery.datetimepicker.min.css')}}" rel="stylesheet" />
-
-    <link rel="stylesheet" href="{{url('js/admin/jquery-ui.css')}}">
-
 </head>
 
 <body>
@@ -130,6 +127,28 @@
                         </ul>
                     </li>
 
+                    <li>
+                        <a><i class="fa fa-picture-o fa-fw"></i>Orders<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+
+                            <li>
+                                <a href="{{url('admin', 'orders')}}">List</a>
+                            </li>
+
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a><i class="fa fa-picture-o fa-fw"></i>Exports<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+
+                            <li>
+                                <a href="{{url('admin', 'exports')}}">List</a>
+                            </li>
+
+                        </ul>
+                    </li>
+
                 </ul>
             </div>
             <!-- /.sidebar-collapse -->
@@ -151,7 +170,6 @@
 <script src="{{url('js/admin/ckeditor/ckeditor.js')}}"></script>
 <script src="{{url('js/admin/select2.min.js')}}"></script>
 <script src="{{url('js/admin/datetimepicker/build/jquery.datetimepicker.full.min.js')}}"></script>
-<script src="{{url('js/admin/jquery-ui.js')}}"></script>
 <script type="text/javascript">
     $.ajaxSetup({
         headers: { 'X-CSRF-Token' : $('meta[name=csrf_token]').attr('content') }

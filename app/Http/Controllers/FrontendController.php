@@ -58,19 +58,20 @@ class FrontendController extends Controller
                 'shipping_phone' => '234234234',
                 'shipping_email' => 'tieungao@test.com',
                 'customer_note' => 'Giao hang tan nha',
-                'status' => 0,
+                'status' => 'create',
                'created_at' => $now,
                'updated_at' => $now,
             ]);
 
            foreach ($order_items as $item) {
                $product = Product::find($item['product_id']);
+
                DB::table('order_items')->insert([
                    'order_id' => $orderId,
                    'product_id' => $item['product_id'],
                    'quantity' => $item['quantity'],
-                   'product_current_price' => ($product->promotion_price) ? $product->promotion_price : $product->seller_price,
-                   'product_current_vat' => ($product->seller_vat) ? $product->seller_vat : 10,
+                   'product_current_price' => ($product->promotion_price) ? $product->promotion_price : $product->sell_price,
+                   'product_current_vat' => ($product->sell_vat) ? $product->sell_vat : 10,
                    'created_at' => $now,
                    'updated_at' => $now,
                ]);
